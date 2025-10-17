@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hungry/features/layout/presentation/view/layout_screen.dart';
 import 'package:hungry/features/splash/presentation/view/splash_screen.dart';
 
 void main() {
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         SplashScreen.routeName:(_)=>const SplashScreen(),
+        LayoutScreen.routeName:(_)=>LayoutScreen()
       },
       initialRoute: SplashScreen.routeName,
     );

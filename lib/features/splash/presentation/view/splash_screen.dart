@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hungry/features/layout/presentation/view/layout_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3),(){
-      // Navigator.pushNamed(context, HomeScreen.routeName);
+      Navigator.pushNamed(context, LayoutScreen.routeName);
     });  }
   @override
   Widget build(BuildContext context) {
