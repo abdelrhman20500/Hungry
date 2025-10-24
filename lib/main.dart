@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hungry/features/auth/presentation/view/login_screen.dart';
+import 'package:hungry/features/auth/presentation/view/register_screen.dart';
 import 'package:hungry/features/layout/presentation/view/layout_screen.dart';
 import 'package:hungry/features/splash/presentation/view/splash_screen.dart';
 
@@ -24,8 +25,9 @@ class MyApp extends StatelessWidget {
             SplashScreen.routeName: (_) => const SplashScreen(),
             LoginScreen.routeName: (_) => LoginScreen(),
             LayoutScreen.routeName: (_) => LayoutScreen(),
+            RegisterScreen.routeName:(_)=>RegisterScreen(),
           },
-          initialRoute: LoginScreen.routeName,
+          initialRoute: SplashScreen.routeName,
         );
       },
     );

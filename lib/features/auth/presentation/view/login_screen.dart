@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hungry/core/widgets/custom_text_field.dart';
+import 'package:hungry/features/auth/presentation/view/register_screen.dart';
 
 import '../../../../core/widgets/custom_text_button.dart';
 
@@ -99,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(width: width * 0.01),
                 InkWell(
                   onTap: () {
-                    // Navigator.pushNamed(context, RegisterScreen.routeName);
+                    Navigator.pushNamed(context, RegisterScreen.routeName);
                   },
                   child: const Text(
                     'Create Account',
