@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hungry/features/auth/presentation/view/login_screen.dart';
 import 'package:hungry/features/layout/presentation/view/layout_screen.dart';
 import 'package:hungry/features/splash/presentation/view/splash_screen.dart';
 
@@ -11,14 +13,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        SplashScreen.routeName:(_)=>const SplashScreen(),
-        LayoutScreen.routeName:(_)=>LayoutScreen()
+    return ScreenUtilInit(
+      designSize: const Size(430, 932), // iPhone X default size
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          routes: {
+            SplashScreen.routeName: (_) => const SplashScreen(),
+            LoginScreen.routeName: (_) => LoginScreen(),
+            LayoutScreen.routeName: (_) => LayoutScreen(),
+          },
+          initialRoute: LoginScreen.routeName,
+        );
       },
-      initialRoute: SplashScreen.routeName,
     );
   }
 }
-

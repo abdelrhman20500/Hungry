@@ -36,7 +36,7 @@ dependencies:
 #  flutter_otp_text_field: ^1.5.1+1
   shimmer: ^3.0.0
 #  smooth_page_indicator: ^1.2.1
-#  flutter_screenutil: ^5.9.3
+  flutter_screenutil: ^5.9.3
 #  flutter_slidable: ^3.1.2
 #  flutter_auto_size_text: ^4.1.0
 #  colornames: ^0.2.0
