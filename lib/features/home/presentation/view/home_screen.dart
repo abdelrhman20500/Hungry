@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height= MediaQuery.of(context).size.height;
-    var width= MediaQuery.of(context).size.width;
+    // var width= MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
       child: Column(
@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
           SizedBox(height: height*0.02,),
           const BuildCategoryList(),
           SizedBox(height: height*0.02,),
-          ProductList(),
+          const ProductList(),
         ],
       ),
     );
