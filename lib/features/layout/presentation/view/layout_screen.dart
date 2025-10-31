@@ -30,6 +30,7 @@ class LayoutScreen extends StatelessWidget {
                 child: tabs[cubit.currentIndex]
             ),
             bottomNavigationBar: Container(
+
               decoration: const BoxDecoration(
                   color: Color(0xff08431D)
               ),
