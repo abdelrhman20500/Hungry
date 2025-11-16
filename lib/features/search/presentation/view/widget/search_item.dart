@@ -2,9 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ProductItem extends StatelessWidget {
-  const ProductItem({super.key, required this.id, required this.image,
-    required this.title, required this.description, required this.price, required this.rating});
+class SearchItem extends StatelessWidget {
+  const SearchItem({super.key, required this.id, required this.image, required this.title, required this.description, required this.price, required this.rating});
   final int id;
   final String image;
   final String title;
@@ -12,10 +11,10 @@ class ProductItem extends StatelessWidget {
   final String price;
   final String rating;
 
+
   @override
   Widget build(BuildContext context) {
     var height= MediaQuery.of(context).size.height;
-    // var width= MediaQuery.of(context).size.width;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18),
@@ -85,8 +84,9 @@ class ProductItem extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
+                Text("($rating)", style: const TextStyle(fontSize: 22),),
                 const Icon(Icons.star, size: 24,color: Colors.yellow,),
-                const Text("(3.4)", style: TextStyle(fontSize: 22),)
+
               ],
             )
           ],
@@ -95,3 +95,4 @@ class ProductItem extends StatelessWidget {
     );
   }
 }
+

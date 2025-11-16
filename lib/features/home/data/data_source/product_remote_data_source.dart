@@ -17,12 +17,11 @@ class ProductRemoteDataSource extends ProductBaseRemoteDataSource{
   Future<List<Data>> getProduct()async{
     var response = await apiService.get(
       endpoint: "products",
-      // token: SharedPref.getToken(),
     );
 
     if (response.statusCode == 200) {
       final List<dynamic> dataList = response.data['data'];
-      print(dataList);
+      // print(dataList);
       return dataList.map((e) => Data.fromJson(e)).toList();
     } else {
       throw ServerException(
