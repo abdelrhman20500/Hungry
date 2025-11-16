@@ -5,7 +5,6 @@ import 'package:hungry/features/auth/presentation/view/login_screen.dart';
 import 'package:hungry/features/auth/presentation/view/register_screen.dart';
 import 'package:hungry/features/layout/presentation/view/layout_screen.dart';
 import 'package:hungry/features/splash/presentation/view/splash_screen.dart';
-
 import 'core/function/set_up_service_locator.dart';
 import 'core/function/simple_bloc_observer.dart';
 

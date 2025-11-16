@@ -1,7 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  const ProductItem({super.key, required this.id, required this.image,
+    required this.title, required this.description, required this.price, required this.rating});
+  final int id;
+  final String image;
+  final String title;
+  final String description;
+  final String price;
+  final String rating;
 
   @override
   Widget build(BuildContext context) {
@@ -26,21 +35,46 @@ class ProductItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Image.asset("assets/images/image 6.png",
-                height: height*0.2, fit: BoxFit.fill,),),
+              child:  ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: CachedNetworkImage(
+                  imageUrl: image,
+                  fit: BoxFit.fill,
+                  height: height * 0.17, // Adjust height
+                  width: double.infinity, // Full width
+                  placeholder: (context, url) => Shimmer.fromColors(
+                    baseColor: Colors.grey[700]!,
+                    highlightColor: Colors.grey[500]!,
+                    child: Container(
+                      height: height * 0.2,
+                      width: double.infinity,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  errorWidget: (context, url, error) =>
+                  const Icon(Icons.error),
+                ),
+              ),),
             SizedBox(height: height*0.01,),
-            const Text("Hungry?", style: TextStyle(
-              fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black,),),
+            Text(title,maxLines:1,overflow: TextOverflow.ellipsis, style: const TextStyle(
+              fontSize: 18, fontWeight: FontWeight.w600, color: Colors.black,),),
             SizedBox(height: height*0.01,),
-            const Text("Hungry? Hungry? Hungry? Hungry? Hungry?",
-              maxLines:2,overflow: TextOverflow.ellipsis,style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey,),),
+            Text(description,
+              maxLines:3,overflow: TextOverflow.ellipsis,style: const TextStyle(
+                fontSize: 16, fontWeight: FontWeight.w500, color: Colors.grey,),),
             SizedBox(height: height*0.01,),
             Row(
               children: [
-                const Icon(Icons.star, size: 28,color: Colors.yellow,),
-                SizedBox(width: width*0.03,),
-                const Text("(3.4)", style: TextStyle(fontSize: 24),)
+                Text( "\$${price ?? "0.00"}",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const Spacer(),
+                const Icon(Icons.star, size: 24,color: Colors.yellow,),
+                const Text("(3.4)", style: TextStyle(fontSize: 22),)
               ],
             )
           ],
