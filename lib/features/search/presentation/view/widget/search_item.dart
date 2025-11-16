@@ -76,7 +76,7 @@ class SearchItem extends StatelessWidget {
             SizedBox(height: height*0.01,),
             Row(
               children: [
-                Text("\$${price ?? "0.00"}",
+                Text("\$$price",
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 18,
@@ -84,9 +84,8 @@ class SearchItem extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
+                const Icon(Icons.star, size: 24,color: Colors.orange,),
                 Text("($rating)", style: const TextStyle(fontSize: 22),),
-                const Icon(Icons.star, size: 24,color: Colors.yellow,),
-
               ],
             )
           ],
