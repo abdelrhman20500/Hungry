@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hungry/features/favorite/presentation/view_manager/favorite_cubit.dart';
+import 'package:hungry/features/favorite/presentation/view_manager/favorite_state.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ProductItem extends StatelessWidget {
@@ -60,11 +63,24 @@ class ProductItem extends StatelessWidget {
                 Positioned(
                     top: 4.0,
                     right: 4.0,
-                    child: CircleAvatar(
-                        backgroundColor: Colors.grey.withOpacity(0.8),
-                        radius: 24,
-                        child: IconButton(onPressed: (){},
-                            icon: const Icon(Icons.favorite, color: Colors.red,size: 28,))))
+                    child: BlocBuilder<FavoriteCubit, FavoriteState>(
+                      builder: (context, state) {
+                        final favoriteCubit = FavoriteCubit.get(context);
+                        final isCurrentlyFavorite = favoriteCubit.isFavorite(id);
+                        final iconData = isCurrentlyFavorite ? Icons.favorite : Icons.favorite_border;
+                        final iconColor = isCurrentlyFavorite ? Colors.red : Colors.blue;
+
+                        return CircleAvatar(
+                            child: IconButton(
+                              onPressed: (){
+                                favoriteCubit.toggleFavorite(id: id);
+                              },
+                              icon: Icon(iconData, color: iconColor, size: 24),
+                            )
+                        );
+                      },
+                    )
+                ),
               ],
             ),
             SizedBox(height: height*0.01,),

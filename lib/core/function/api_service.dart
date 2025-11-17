@@ -27,7 +27,7 @@ class ApiService{
       options: Options(
         headers: {
           'Content-Type': 'application/json',
-          'token': token,
+          'Authorization': 'Bearer $token',
         },
       ),
     );
