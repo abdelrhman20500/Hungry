@@ -24,8 +24,8 @@ class AddOrRemoveRemoteDataSource extends AddOrRemoveBaseRemoteDataSource{
    );
    if (response.statusCode == 200){
      final Map<String, dynamic> productFav = response.data;
-     // print("@@@@@");
-     // print(productFav);
+     print("@@@@@");
+     print(productFav);
      return AddOrRemoveFavModel.fromJson(productFav);
    }else{
      throw ServerException(
@@ -41,8 +41,8 @@ class AddOrRemoveRemoteDataSource extends AddOrRemoveBaseRemoteDataSource{
     );
     if (response.statusCode == 200){
       final Map<String, dynamic> productFav = response.data;
-      // print("@@@@@");
-      // print(productFav);
+      print("@@@@@");
+      print(productFav);
       return FavModel.fromJson(productFav);
     }else{
       throw ServerException(

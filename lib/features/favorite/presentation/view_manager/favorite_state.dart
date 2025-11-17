@@ -7,6 +7,7 @@ class FavoriteInitial extends FavoriteState{}
 
 /// get Favorite States
 class FavoriteLoading extends FavoriteState{}
+class FavoriteEmpty extends FavoriteState {}
 class FavoriteFailure extends FavoriteState{
   final String errMessage;
   FavoriteFailure({required this.errMessage});

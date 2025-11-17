@@ -21,10 +21,6 @@ void main()async{
   await SharedPref.init();
   setUpServiceLocator();
   Bloc.observer= SimpleBlocObserver();
-  // AddOrRemoveFavCubit(AddOrRemoveFavUseCase(favRepo: FavRepoImpl(addOrRemoveRemoteDataSource:
-  // AddOrRemoveRemoteDataSource(apiService: ApiService(Dio(),),),),),)..addOrRemoveFav(id: 1);
-  // FavoriteCubit(FavUseCase(favRepo: FavRepoImpl(addOrRemoveRemoteDataSource:
-  // AddOrRemoveRemoteDataSource(apiService: ApiService(Dio())))))..getFavorite();
   runApp(const MyApp());
 }
 

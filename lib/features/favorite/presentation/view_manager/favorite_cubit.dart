@@ -28,10 +28,7 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   // ------------------------- GET FAVORITE (LIST) -------------------------
 
 // Inside FavoriteCubit
-
   Future<void> getFavorite() async {
-    // ✅ FIX: Only emit FavoriteLoading if the list has not been loaded before (i.e., for initial fetch).
-    // If currentFavoriteModel is not null, we have data to display, so run the refresh silently.
     if (currentFavoriteModel == null) {
       emit(FavoriteLoading());
     }
@@ -43,16 +40,45 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     if (isClosed) return;
 
     result.fold((e) {
-      // ... (Failure logic) ...
       if (currentFavoriteModel == null) {
         emit(FavoriteFailure(errMessage: e.message));
       }
     }, (favModel) {
-      // ... (Update currentFavoriteModel and favoriteProductIds set) ...
+      currentFavoriteModel = favModel;
 
-      emit(FavoriteSuccess(favModel: favModel));
+      // ✅ لو القائمة فاضية
+      if (favModel.data == null || favModel.data!.isEmpty) {
+        emit(FavoriteEmpty());
+      } else {
+        emit(FavoriteSuccess(favModel: favModel));
+      }
     });
   }
+
+  // Future<void> getFavorite() async {
+  //   // ✅ FIX: Only emit FavoriteLoading if the list has not been loaded before (i.e., for initial fetch).
+  //   // If currentFavoriteModel is not null, we have data to display, so run the refresh silently.
+  //   if (currentFavoriteModel == null) {
+  //     emit(FavoriteLoading());
+  //   }
+  //
+  //   if (isClosed) return;
+  //
+  //   var result = await favUseCase.call(const NoParameters());
+  //
+  //   if (isClosed) return;
+  //
+  //   result.fold((e) {
+  //     // ... (Failure logic) ...
+  //     if (currentFavoriteModel == null) {
+  //       emit(FavoriteFailure(errMessage: e.message));
+  //     }
+  //   }, (favModel) {
+  //     // ... (Update currentFavoriteModel and favoriteProductIds set) ...
+  //
+  //     emit(FavoriteSuccess(favModel: favModel));
+  //   });
+  // }
   // ------------------------- TOGGLE FAVORITE ACTION -------------------------
 
   Future<void> toggleFavorite({required int id}) async {
