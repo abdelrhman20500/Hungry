@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
               FavUseCase(favRepo: FavRepoImpl(addOrRemoveRemoteDataSource:
               AddOrRemoveRemoteDataSource(apiService: ApiService(Dio(),),),),),
               AddOrRemoveFavUseCase(favRepo: FavRepoImpl(addOrRemoveRemoteDataSource:
-              AddOrRemoveRemoteDataSource(apiService: ApiService(Dio(),),),),),),
+              AddOrRemoveRemoteDataSource(apiService: ApiService(Dio(),),),),),)..getFavorites(),
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             routes: {

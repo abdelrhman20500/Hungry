@@ -60,25 +60,27 @@ class ItemFavorite extends StatelessWidget {
                     ),
                   ),),
                 Positioned(
-                    top: 4.0,
-                    right: 4.0,
-                    child: BlocBuilder<FavoriteCubit, FavoriteState>(
-                      builder: (context, state) {
-                        final favoriteCubit = FavoriteCubit.get(context);
-                        final isCurrentlyFavorite = favoriteCubit.isFavorite(id);
-                        final iconData = isCurrentlyFavorite ? Icons.favorite : Icons.favorite_border;
-                        final iconColor = isCurrentlyFavorite ? Colors.red : Colors.blue;
+                  top: 4.0,
+                  right: 4.0,
+                  child: CircleAvatar(
+                      child: BlocBuilder<FavoriteCubit, FavoriteState>(
+                        builder: (context, state) {
+                          final cubit = FavoriteCubit.get(context);
 
-                        return CircleAvatar(
-                            child: IconButton(
-                              onPressed: (){
-                                favoriteCubit.toggleFavorite(id: id);
-                              },
-                              icon: Icon(iconData, color: iconColor, size: 24),
-                            )
-                        );
-                      },
-                    )
+                          return IconButton(
+                            onPressed: () {
+                              cubit.toggleFavorite(id: id);
+                            },
+                            icon: Icon(
+                              cubit.isFavorite(id) ? Icons.favorite : Icons.favorite_border,
+                              color: cubit.isFavorite(id) ? Colors.red : Colors.blue,
+                              size: 24,
+                            ),
+                          );
+                        },
+                      )
+
+                  ),
                 ),
               ],
             ),

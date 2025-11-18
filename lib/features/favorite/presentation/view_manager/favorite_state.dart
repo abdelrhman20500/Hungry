@@ -19,12 +19,12 @@ class FavoriteSuccess extends FavoriteState{
 class FavoriteStatusUpdated extends FavoriteState{}
 
 /// add Or Remove Favorites...
-class AddOrRemoveFavLoading extends FavoriteState{}
-class AddOrRemoveFavFailure extends FavoriteState{
+class ToggleLoading extends FavoriteState{}
+class ToggleFavFailure extends FavoriteState{
   final String errMessage;
-  AddOrRemoveFavFailure({required this.errMessage});
+  ToggleFavFailure({required this.errMessage});
 }
-class AddOrRemoveFavSuccess extends FavoriteState{
+class ToggleFavSuccess extends FavoriteState{
   final AddOrRemoveFavModel addOrRemoveFavModel;
-  AddOrRemoveFavSuccess({required this.addOrRemoveFavModel});
+  ToggleFavSuccess({required this.addOrRemoveFavModel});
 }
