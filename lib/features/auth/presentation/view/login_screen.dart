@@ -1,7 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hungry/core/function/api_service.dart';
 import 'package:hungry/core/function/set_up_service_locator.dart';
 import 'package:hungry/core/widgets/custom_text_field.dart';
 import 'package:hungry/features/auth/data/repo/auth_repo_impl.dart';
