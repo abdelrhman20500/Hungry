@@ -46,104 +46,106 @@ class LoginScreen extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             backgroundColor: const Color(0xff08431D),
-            body: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
-                key: formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: height*0.1,),
-                    Center(
-                      child: Image.asset("assets/images/image 1.png", height: height*0.16,
-                          width: width*0.5, fit: BoxFit.fill),
-                    ),
-                    SizedBox(height: height * 0.03),
-                    const Center(
-                      child: Text(
-                        "Welcome To Hungry",
-                        style: TextStyle(color: Colors.white, fontSize: 38, fontWeight: FontWeight.bold),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: height*0.1,),
+                      Center(
+                        child: Image.asset("assets/images/image 1.png", height: height*0.16,
+                            width: width*0.5, fit: BoxFit.fill),
                       ),
-                    ),
-                    SizedBox(height: height * 0.02),
-                    const Text(
-                      "Email",
-                      style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(height: height * 0.02),
-                    CustomTextField(
-                      hintText: "Enter Your Email",
-                      controller: emailController,
-                      suffixIcon: const Icon(Icons.email_outlined, size: 32),
-                    ),
-                    SizedBox(height: height * 0.05),
-                    const Text(
-                      "Password",
-                      style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
-                    ),
-                    SizedBox(height: height * 0.02),
-                    CustomTextField(
-                      hintText: "Enter Your Password",
-                      controller: passwordController,
-                      suffixIcon: const Icon(Icons.remove_red_eye_outlined, size: 32),
-                    ),
-                    SizedBox(height: height * 0.02),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            // Navigator.pushNamed(context, ForgetPasswordScreen.routeName);
-                          },
-                          child: const Text(
-                            "Forget password ?",
-                            style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500),
+                      SizedBox(height: height * 0.03),
+                      const Center(
+                        child: Text(
+                          "Welcome To Hungry",
+                          style: TextStyle(color: Colors.white, fontSize: 38, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      SizedBox(height: height * 0.02),
+                      const Text(
+                        "Email",
+                        style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(height: height * 0.02),
+                      CustomTextField(
+                        hintText: "Enter Your Email",
+                        controller: emailController,
+                        suffixIcon: const Icon(Icons.email_outlined, size: 32),
+                      ),
+                      SizedBox(height: height * 0.05),
+                      const Text(
+                        "Password",
+                        style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
+                      ),
+                      SizedBox(height: height * 0.02),
+                      CustomTextField(
+                        hintText: "Enter Your Password",
+                        controller: passwordController,
+                        suffixIcon: const Icon(Icons.remove_red_eye_outlined, size: 32),
+                      ),
+                      SizedBox(height: height * 0.02),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              // Navigator.pushNamed(context, ForgetPasswordScreen.routeName);
+                            },
+                            child: const Text(
+                              "Forget password ?",
+                              style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: height * 0.08),
+                      Container(
+                        height: height * 0.07,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Center(
+                          child: CustomTextButton(
+                            text: "Login",
+                            onTab: () {
+                              if(formKey.currentState!.validate()){
+                                BlocProvider.of<LoginCubit>(context).login(
+                                    emailController.text,
+                                    passwordController.text
+                                );
+                              }
+                            },
                           ),
                         ),
-                      ],
-                    ),
-                    SizedBox(height: height * 0.08),
-                    Container(
-                      height: height * 0.07,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Center(
-                        child: CustomTextButton(
-                          text: "Login",
-                          onTab: () {
-                            if(formKey.currentState!.validate()){
-                              BlocProvider.of<LoginCubit>(context).login(
-                                  emailController.text,
-                                  passwordController.text
-                              );
-                            }
-                          },
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: height * 0.03),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Don’t have an account?',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        ),
-                        SizedBox(width: width * 0.01),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, RegisterScreen.routeName);
-                          },
-                          child: const Text(
-                            'Create Account',
+                      SizedBox(height: height * 0.03),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Don’t have an account?',
                             style: TextStyle(fontSize: 18, color: Colors.white),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          SizedBox(width: width * 0.01),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, RegisterScreen.routeName);
+                            },
+                            child: const Text(
+                              'Create Account',
+                              style: TextStyle(fontSize: 18, color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
