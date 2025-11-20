@@ -69,7 +69,7 @@ class ProductDetailsScreen extends StatelessWidget {
                             color: const Color(0xff08431D),
                             borderRadius: BorderRadius.circular(16.0)
                         ),
-                        child: Center(child: TextButton(onPressed: (){}, child: const Text("Check Out", style: TextStyle(
+                        child: Center(child: TextButton(onPressed: (){}, child: const Text("Add To Cart", style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white
                         ),))
                         ),

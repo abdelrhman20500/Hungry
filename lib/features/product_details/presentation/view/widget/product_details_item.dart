@@ -45,7 +45,7 @@ class ProductDetailsItem extends StatelessWidget {
         SizedBox(height: height*0.01,),
         Row(
           children: [
-            Text("\$$price",
+            Text("\$ $price",
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 18,
