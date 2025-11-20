@@ -4,13 +4,13 @@ import 'package:hungry/core/utils/errors/failure.dart';
 import 'package:hungry/features/cart/data/model/add_cart_model.dart';
 import 'package:hungry/features/cart/domain/repo/cart_repo.dart';
 
-class AddCartUseCase extends BaseUseCase<AddCartModel, AddCartParameters>{
+class AddCartUseCase extends BaseUseCase<AddCartModel, int>{
   final CartRepo cartRepo;
 
   AddCartUseCase({required this.cartRepo});
   @override
-  Future<Either<Failure, AddCartModel>> call(AddCartParameters parameters)async{
-    return await cartRepo.addCart(parameters: parameters);
+  Future<Either<Failure, AddCartModel>> call([int? id])async{
+    return await cartRepo.addCart(productId: id!);
   }
 
 }

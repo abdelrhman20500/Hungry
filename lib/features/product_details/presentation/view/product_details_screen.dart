@@ -17,7 +17,6 @@ class ProductDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height= MediaQuery.of(context).size.height;
-    var width= MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (context) => ProductDetailsCubit(ProductDetailsUseCase(productDetailsRepo:
       ProductDetailsRepoImpl(productDetailsBaseRemoteDataSource:
@@ -48,35 +47,6 @@ class ProductDetailsScreen extends StatelessWidget {
                     color: Colors.black),),
                 SizedBox(height: height*0.01,),
                 const BlocBuilderSideOption(),
-                SizedBox(height: height*0.01),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Column(
-                        children: [
-                          Text("Total price", style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold, color: Colors.grey),),
-                          Text("EGP {${ "0.0"}}", style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w600,color: Color(0xff08431D)),),
-                        ],
-                      ),
-                      Container(
-                        height: height*0.06,
-                        width: width*0.5,
-                        decoration: BoxDecoration(
-                            color: const Color(0xff08431D),
-                            borderRadius: BorderRadius.circular(16.0)
-                        ),
-                        child: Center(child: TextButton(onPressed: (){}, child: const Text("Add To Cart", style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white
-                        ),))
-                        ),
-                      )
-                    ],
-                  ),
-                )
               ],
             ),
           ),

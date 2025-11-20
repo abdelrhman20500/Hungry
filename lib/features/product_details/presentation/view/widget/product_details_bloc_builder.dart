@@ -19,6 +19,7 @@ class ProductDetailsBlocBuilder extends StatelessWidget {
             showErrorDialog(context, state.errMessage);
           }else if(state is ProductDetailsSuccess){
            return ProductDetailsItem(
+             id: state.productDetailsModel.data!.id!,
              image: state.productDetailsModel.data!.image!,
              title: state.productDetailsModel.data!.name!,
              description: state.productDetailsModel.data!.description!,

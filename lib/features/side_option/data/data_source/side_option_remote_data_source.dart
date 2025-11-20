@@ -18,8 +18,8 @@ class SideOptionRemoteDataSource extends SideOptionBaseRemoteDataSource{
     );
     if (response.statusCode == 200){
       final Map<String, dynamic> sideOption = response.data;
-      print("@@@@@");
-      print(sideOption);
+      // print("@@@@@");
+      // print(sideOption);
       return SideOptionModel.fromJson(sideOption);
     }else{
       throw ServerException(

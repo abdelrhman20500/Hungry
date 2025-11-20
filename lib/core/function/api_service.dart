@@ -6,19 +6,18 @@ class ApiService{
 
   ApiService(this.dio);
   /// post method...
-  Future<Response> post(String endPoint, Map<String, dynamic> data,) async {
+  Future<Response> post(String endPoint, Map<String, dynamic> data, {String? token}) async {
     var response = await dio.post(
       "$baseUrl$endPoint",
       data: data,
       options: Options(headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': 'Bearer $token',
+        'Authorization': 'Bearer $token',
       }),
     );
 
     return response;
   }
-
   /// postCart method
   Future<Response> postMethod(String endPoint, Map<String, dynamic> data, String token) async {
     return await dio.post(
@@ -76,13 +75,12 @@ class ApiService{
       options: Options(
         headers: {
           'Content-Type': 'application/json',
-          'token': token,
+          'Authorization': 'Bearer $token',
         },
       ),
     );
     return response;
   }
-
   /// get method..
   Future<Response> get({required String endpoint ,String? token}) async {
     var response = await dio.get("$baseUrl$endpoint",
