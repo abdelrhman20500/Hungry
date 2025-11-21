@@ -25,14 +25,16 @@ class CartCubit extends Cubit<CartState>{
       emit(CartSuccess(cartModel: cartModel));
     });
   }
-  Future<void> addCart(int productId)async{
+  Future<void> addCart(int productId, int quantity)async{
     emit(AddCartLoading());
-    var result =await addCartUseCase.call(productId);
+    var result =await addCartUseCase.call(AddCartParams(productId: productId, quantity: quantity));
     result.fold((e){
       emit(AddCartFailure(errMessage: e.message));
-    }, (addCartModel){
-      getCart();
+    }, (addCartModel) async {
       emit(AddCartSuccess(addCartModel: addCartModel));
+      /// الكود ده علشان علامة الصح تظهر عند الاضافة في الكارت
+      await Future.delayed(const Duration(seconds: 2)); // ✅ استنى ثانيتين
+      getCart();
     });
   }
   Future<void>deleteCart(int itemId)async{
@@ -41,8 +43,8 @@ class CartCubit extends Cubit<CartState>{
     result.fold((e){
       emit(DeleteCartFailure(errMessage: e.message));
     }, (deleteCartModel){
-      getCart();
       emit(DeleteCartSuccess(deleteCartModel: deleteCartModel));
+      getCart();
     });
   }
 }

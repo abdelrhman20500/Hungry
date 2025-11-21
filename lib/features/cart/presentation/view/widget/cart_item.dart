@@ -10,11 +10,13 @@ class CartItem extends StatelessWidget {
     required this.image,
     required this.title,
     required this.itemId,
+    required this.quantity
   });
 
   final String image;
   final String title;
   final int itemId;
+  final int quantity;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -90,9 +92,8 @@ class CartItem extends StatelessWidget {
                   const SizedBox(
                     width: 12.0,
                   ),
-                  const Text(
-                    "1",
-                    style: TextStyle(
+                  Text(quantity.toString(),
+                    style: const TextStyle(
                         color: Color(0xff08431D),
                         fontSize: 28,
                         fontWeight: FontWeight.bold),

@@ -5,8 +5,8 @@ import 'package:hungry/features/cart/presentation/view_manager/cart-state.dart';
 import 'package:hungry/features/cart/presentation/view_manager/cart_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ProductDetailsItem extends StatelessWidget {
-  const ProductDetailsItem({super.key, required this.image,
+class ProductDetailsItem extends StatefulWidget {
+   const ProductDetailsItem({super.key, required this.image,
     required this.title, required this.description,required this.id,
     required this.price, required this.rating});
 
@@ -16,6 +16,14 @@ class ProductDetailsItem extends StatelessWidget {
   final String description;
   final String price;
   final String rating;
+
+  @override
+  State<ProductDetailsItem> createState() => _ProductDetailsItemState();
+}
+
+class _ProductDetailsItemState extends State<ProductDetailsItem> {
+   int count =1;
+
   @override
   Widget build(BuildContext context) {
     var height= MediaQuery.of(context).size.height;
@@ -24,7 +32,7 @@ class ProductDetailsItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         CachedNetworkImage(
-          imageUrl: image,
+          imageUrl: widget.image,
           fit: BoxFit.fill,
           height: height * 0.3, // Adjust height
           width: double.infinity, // Full width
@@ -41,16 +49,83 @@ class ProductDetailsItem extends StatelessWidget {
           const Icon(Icons.error),
         ),
         SizedBox(height: height*0.02,),
-        Text(title,maxLines:1,overflow: TextOverflow.ellipsis, style: const TextStyle(
-          fontSize: 22, fontWeight: FontWeight.w600, color: Colors.black,),),
+        Row(
+          children: [
+            Expanded(
+              child: Text(widget.title,maxLines:2,overflow: TextOverflow.ellipsis, style: const TextStyle(
+                fontSize: 22, fontWeight: FontWeight.w600, color: Colors.black,),),
+            ),
+            Container(
+              width: width * 0.4,
+              height: height * 0.06,
+              decoration: BoxDecoration(
+                color: const Color(0xff08431D),
+                borderRadius: BorderRadius.circular(22.0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    width: 34.0,
+                    height: 34.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2.0,
+                      ),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        count--;
+                        setState(() {});
+                      },
+                      child: const CircleAvatar(
+                        backgroundColor: Color(0xff08431D),
+                        child: Icon(Icons.remove, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  Text(count.toString(),
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    width: 34.0,
+                    height: 34.0,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2.0,
+                      ),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        count++;
+                        setState(() {});
+                      },
+                      child: const CircleAvatar(
+                        backgroundColor: Color(0xff08431D),
+                        child: Icon(Icons.add, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
         SizedBox(height: height*0.01,),
-        Text(description,
+        Text(widget.description,
           maxLines:3,overflow: TextOverflow.ellipsis,style: const TextStyle(
             fontSize: 18, fontWeight: FontWeight.w500, color: Colors.grey,),),
         SizedBox(height: height*0.02,),
         Row(
           children: [
-            Text("\$ $price",
+            Text("\$ ${widget.price}",
               style: const TextStyle(
                 color: Colors.black,
                 fontSize: 18,
@@ -59,7 +134,7 @@ class ProductDetailsItem extends StatelessWidget {
             ),
             SizedBox(width: width*0.03,),
             const Icon(Icons.star, size: 24,color: Colors.orange,),
-            Text("($rating)", style: const TextStyle(fontSize: 22),),
+            Text("(${widget.rating})", style: const TextStyle(fontSize: 22),),
             const Spacer(),
             BlocBuilder<CartCubit, CartState>(
               builder: (context, state) {
@@ -79,7 +154,6 @@ class ProductDetailsItem extends StatelessWidget {
                     ),
                   );
                 } else if (state is AddCartSuccess) {
-                  // حالة النجاح
                   return Container(
                     height: height * 0.06,
                     width: width * 0.5,
@@ -99,7 +173,6 @@ class ProductDetailsItem extends StatelessWidget {
                     ),
                   );
                 } else if (state is AddCartFailure) {
-                  // حالة الفشل
                   return Container(
                     height: height * 0.06,
                     width: width * 0.5,
@@ -130,7 +203,8 @@ class ProductDetailsItem extends StatelessWidget {
                     child: Center(
                       child: TextButton(
                         onPressed: () {
-                          BlocProvider.of<CartCubit>(context).addCart(id);
+                          BlocProvider.of<CartCubit>(context).addCart(widget.id, count);
+                          print(count);
                         },
                         child: const Text(
                           "Add To Cart",

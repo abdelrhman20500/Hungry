@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hungry/features/product_details/presentation/view/widget/product_details_bloc_builder.dart';
-import 'package:hungry/features/side_option/presentation/view/widget/bloc_builder_side_option.dart';
 import '../../../../core/function/api_service.dart';
 import '../../../topping/presentation/view/widget/bloc_builder_topping.dart';
 import '../../data/data_source/product_details_remote_date_source.dart';
@@ -43,10 +42,6 @@ class ProductDetailsScreen extends StatelessWidget {
                 SizedBox(height: height*0.01,),
                 const BlocBuilderTopping(),
                 SizedBox(height: height*0.01,),
-                const Text("Side Option", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold,
-                    color: Colors.black),),
-                SizedBox(height: height*0.01,),
-                const BlocBuilderSideOption(),
               ],
             ),
           ),

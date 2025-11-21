@@ -19,6 +19,7 @@ class ListCart extends StatelessWidget {
                 title: model.data!.items![index].name!,
                 image: model.data!.items![index].image!,
                 itemId: model.data!.items![index].itemId!,
+                quantity: model.data!.items![index].quantity!,
               ),
             );
           }),

@@ -8,7 +8,7 @@ import '../../../../core/utils/errors/exception.dart';
 
 abstract class AddCartBaseRemoteDataSource {
   Future<CartModel> getCart();
-  Future<AddCartModel> addCart({required int productId});
+  Future<AddCartModel> addCart({required int productId, required int quantity});
   Future<DeleteCartModel> deleteCart({required int itemId});
 }
 
@@ -17,12 +17,12 @@ class AddCartRemoteDataSource extends AddCartBaseRemoteDataSource{
 
   AddCartRemoteDataSource({required this.apiService});
   @override
-  Future<AddCartModel> addCart({required int productId,})async{
+  Future<AddCartModel> addCart({required int productId, required int quantity})async{
     final body = {
       "items": [
         {
           "product_id": productId,
-          "quantity": 1,
+          "quantity": quantity,
         }
       ]
     };

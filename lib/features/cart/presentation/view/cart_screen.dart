@@ -79,8 +79,7 @@ class CartScreen extends StatelessWidget {
         } else if (state is CartInitial) {
           return const Center(child: Text('Loading cart...'));
         }
-
-        return const Center(child: Text('Your cart is empty.'));
+        return const Center(child: CircularProgressIndicator());
       },
     );
   }

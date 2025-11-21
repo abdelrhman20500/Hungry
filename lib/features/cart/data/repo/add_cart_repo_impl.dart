@@ -13,9 +13,9 @@ class AddCartRepoImpl extends CartRepo{
   AddCartRepoImpl({required this.addCartBaseRemoteDataSource});
 
   @override
-  Future<Either<Failure, AddCartModel>> addCart({required int productId})async{
+  Future<Either<Failure, AddCartModel>> addCart({required int productId, required int quantity})async{
     try {
-      var result= await addCartBaseRemoteDataSource.addCart(productId: productId);
+      var result = await addCartBaseRemoteDataSource.addCart(productId: productId, quantity: quantity);
       return right(result);
     } on ServerException catch (failure) {
       return Left(ServerFailure(failure.errorMessageModel.message));
