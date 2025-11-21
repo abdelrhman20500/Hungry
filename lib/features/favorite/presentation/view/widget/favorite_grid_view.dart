@@ -15,7 +15,7 @@ class FavoriteGridView extends StatelessWidget {
           crossAxisCount: 2,
           mainAxisSpacing: 6.0,
           crossAxisSpacing: 6.0,
-          childAspectRatio: 1.4 / 2.34,
+          childAspectRatio: 1.4 / 2.46,
         ),
         itemBuilder: (context, index){
           return Padding(

@@ -3,6 +3,7 @@ import 'package:hungry/core/function/api_service.dart';
 import 'package:hungry/core/utils/errors/failure.dart';
 import 'package:hungry/core/utils/shared_preferences.dart';
 import 'package:hungry/features/auth/data/model/auth_model.dart';
+import 'package:hungry/features/auth/data/model/log_out_model.dart';
 import 'package:hungry/features/auth/domain/repo/auth_repo.dart';
 import '../../../../core/utils/errors/error_message_model.dart';
 
@@ -37,6 +38,21 @@ class AuthRepoImpl extends AuthRepo {
       print(authModel.message);
       print(authModel.data!.token!);
       return Right(authModel);
+    } else {
+      final errorModel = ErrorMessageModel.fromJson(response.data);
+      return Left(ServerFailure(errorModel.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, LogoutModel>> logout()async{
+    var response = await apiService.postLogout("logout",
+        token:SharedPref.getToken().toString());
+    if (response.statusCode! >= 200 && response.statusCode! <=300) {
+      final logoutModel = LogoutModel.fromJson(response.data);
+      SharedPref.removeToken();
+      print(logoutModel);
+      return Right(logoutModel);
     } else {
       final errorModel = ErrorMessageModel.fromJson(response.data);
       return Left(ServerFailure(errorModel.message));

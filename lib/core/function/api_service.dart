@@ -55,13 +55,12 @@ class ApiService{
     return response;
   }
   /// logout
-  Future<Response> postLogout(String endPoint,) async {
+  Future<Response> postLogout(String endPoint,{String? token}) async {
     var response = await dio.post(
       "$baseUrl$endPoint",
-      // data: data,
       options: Options(headers: {
         'Content-Type': 'application/json',
-        // 'Authorization': 'Bearer $token',
+        'Authorization': 'Bearer $token',
       }),
     );
 

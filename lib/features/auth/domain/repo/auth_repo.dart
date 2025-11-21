@@ -2,10 +2,12 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:hungry/core/utils/errors/failure.dart';
 import 'package:hungry/features/auth/data/model/auth_model.dart';
+import 'package:hungry/features/auth/data/model/log_out_model.dart';
 
 abstract class AuthRepo{
   Future<Either<Failure,AuthModel>> login({required String email, required String password});
   Future<Either<Failure,AuthModel>> register(RegisterParameters parameters);
+  Future<Either<Failure,LogoutModel>> logout();
 }
 class RegisterParameters extends Equatable {
   final Map<String, dynamic> data;

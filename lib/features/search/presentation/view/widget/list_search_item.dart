@@ -18,7 +18,7 @@ class ListSearchItem extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 14.0,
             crossAxisSpacing: 14.0,
-            childAspectRatio: 1.4 / 2.4,
+            childAspectRatio: 1.4 / 2.54,
           ),
           itemBuilder: (context, index){
             return SearchItem(
